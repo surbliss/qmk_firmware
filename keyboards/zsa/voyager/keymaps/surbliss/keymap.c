@@ -21,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, DM_PLY1, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DM_PLY2, _______,
         _______, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    _______,
         CW_TOGG, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    _______,
-                                                     KC_SPC,  MO(EXT),    MO(SYM), QK_REP
+                                                     MO(EXT), KC_SPC,     QK_REP,  MO(SYM)
     ),
     // Extend layer
     [EXT] = LAYOUT(
@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_APP,  XXXXXXX,
         XXXXXXX, CW_TOGG, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
         XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, KC_ESC,  XXXXXXX,                      XXXXXXX, KC_BSPC, KC_TAB,  KC_ENT,  KC_ESC,  XXXXXXX,
-                                                     _______, _______,    _______, QK_AREP
+                                                     _______, _______,    QK_AREP, _______
     ),
     // Symbol layer
     [SYM] = LAYOUT(
@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, DK_EXLM, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_PLUS, DK_MINS, DK_ASTR, DK_SLSH, DK_LABK, XXXXXXX,
         XXXXXXX, DK_LABK, DK_LCBR, DK_LBRC, DK_LPRN, DK_AMPR,                      DK_QUES, OS_RCTL, OS_RSFT, OS_RGUI, DK_RABK, XXXXXXX,
         XXXXXXX, DK_RABK, DK_RCBR, DK_RBRC, DK_RPRN, DK_PIPE,                      DK_GRV,  DK_QUOT, DK_DQUO, DK_BSLS, OS_LALT, XXXXXXX,
-                                                     KC_ENT,  _______,     _______, _______
+                                                     _______, KC_ENT,     _______, _______
     ),
 };
 
