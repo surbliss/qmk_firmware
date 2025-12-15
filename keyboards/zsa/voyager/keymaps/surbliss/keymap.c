@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
         _______, DM_PLY1, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DM_PLY2, _______,
         _______, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    _______,
-        CW_TOGG, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    _______,
+        _______, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    _______,
                                                      MO(EXT), KC_SPC,     QK_REP,  MO(SYM)
     ),
     // Extend layer
@@ -28,16 +28,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_APP,  XXXXXXX,
         XXXXXXX, CW_TOGG, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
-        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, KC_ESC,  XXXXXXX,                      XXXXXXX, KC_BSPC, KC_TAB,  KC_ENT,  KC_ESC,  XXXXXXX,
+        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,                     XXXXXXX, KC_BSPC, KC_TAB,  KC_ESC,  KC_ENT,  XXXXXXX,
                                                      _______, _______,    QK_AREP, _______
     ),
     // Symbol layer
     [SYM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, DK_EXLM, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_PLUS, DK_MINS, DK_ASTR, DK_SLSH, DK_LABK, XXXXXXX,
-        XXXXXXX, DK_LABK, DK_LCBR, DK_LBRC, DK_LPRN, DK_AMPR,                      DK_QUES, OS_RCTL, OS_RSFT, OS_RGUI, DK_RABK, XXXXXXX,
-        XXXXXXX, DK_RABK, DK_RCBR, DK_RBRC, DK_RPRN, DK_PIPE,                      DK_GRV,  DK_QUOT, DK_DQUO, DK_BSLS, OS_LALT, XXXXXXX,
-                                                     _______, KC_ENT,     _______, _______
+        XXXXXXX, DK_LABK, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_QUES, DK_EQL,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, DK_RABK, DK_RPRN, DK_RCBR, DK_RBRC, DK_PIPE,                      DK_GRV,  DK_QUOT, DK_DQUO, DK_BSLS, XXXXXXX, XXXXXXX,
+                                                     OSL(NUM),_______,    _______, _______
+    ),
+    [NUM] = LAYOUT(
+        _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    XXXXXXX, _______,
+        _______, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX, _______,
+        _______, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_1,    KC_2,    KC_3,    KC_0,    _______,
+                                                     _______, _______,    _______, _______
     ),
 };
 
@@ -51,9 +58,9 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
             // Swapping browser-tabs
             case KC_TAB:
                 if (shifted) {
-                    return KC_TAB;
+                    return C(KC_TAB);
                 } else {
-                    return S(KC_TAB);
+                    return LCS(KC_TAB);
                 }
         }
     }
