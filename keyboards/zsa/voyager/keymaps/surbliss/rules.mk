@@ -10,5 +10,5 @@ REPEAT_KEY_ENABLE = yes
 
 KEY_OVERRIDE_ENABLE = yes
 # Both thumbs simultanously activate third layer
-TRI_LAYER_ENABLE = yes
+# TRI_LAYER_ENABLE = yes
 
