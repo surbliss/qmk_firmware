@@ -2,10 +2,19 @@
 // Copyright 2023 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "action_layer.h"
 #include "keycodes.h"
 #include "stm32f303xc.h"
 #include QMK_KEYBOARD_H
 #include "da.h"
+
+enum {
+    DEF,
+    EXT,
+    SYM,
+    SYS,
+    NUM
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
@@ -13,30 +22,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, _______,
         _______, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    _______,
         OS_LSFT, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    OS_RSFT, // Only until more elobarate repeat-key
-                                                     KC_SPC,  TL_LOWR,    TL_UPPR, QK_REP
+                                                     KC_SPC,  MO(EXT),    MO(SYM), QK_REP
     ),
     // Extend layer
     [EXT] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_HOME, KC_PGDN, KC_UP,   KC_PGUP, KC_APP,  XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, C(KC_F), XXXXXXX,                      KC_HOME, KC_PGDN, KC_UP,   KC_PGUP, KC_APP,  XXXXXXX,
         XXXXXXX, CW_TOGG, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      KC_END,  KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
-        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_BSPC, KC_TAB,  KC_ESC,  KC_ENT,  XXXXXXX,
+        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX ,MO(SYS),                      MO(SYS), KC_BSPC, KC_TAB,  KC_ESC,  KC_ENT,  XXXXXXX,
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
     // Symbol layer
     [SYM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, DK_TILD, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_SLSH, DK_PLUS, DK_ASTR, DK_OSTR, DK_BSLS, XXXXXXX,
-        XXXXXXX, DK_LABK, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_QUES, DK_EQL,  DK_AE,   DK_ARNG, DK_EXLM, XXXXXXX,
-        XXXXXXX, DK_RABK, DK_RPRN, DK_RCBR, DK_RBRC, DK_PIPE,                      DK_GRV,  DK_QUOT, DK_DQUO, DK_EQL,  DK_MINS, XXXXXXX,
+        XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_PLUS, DK_ASTR, DK_OSTR, DK_MINS, XXXXXXX,
+        XXXXXXX, DK_LABK, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_PIPE, DK_EQL,  DK_AE,   DK_ARNG, DK_EXLM, XXXXXXX,
+        XXXXXXX, DK_RABK, DK_RPRN, DK_RCBR, DK_RBRC, DK_TILD,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_QUES, XXXXXXX,
                                                      DK_UNDS, _______,    _______, XXXXXXX
     ),
     [NUM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      XXXXXXX, KC_4,    KC_5,    KC_6,    XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    DK_COMM, XXXXXXX,
+        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      XXXXXXX, KC_4,    KC_5,    KC_6,    DK_DOT,  XXXXXXX,
         XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_1,    KC_2,    KC_3,    KC_0,    XXXXXXX,
-                                                     _______, _______,    _______, _______
+                                                     XXXXXXX, _______,    _______, XXXXXXX
+    ),
+    [SYS] = LAYOUT(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, KC_BRID, KC_BRIU,                      XXXXXXX, KC_F7,   KC_F8,   KC_F9,   KC_F12,  XXXXXXX,
+        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      XXXXXXX, KC_F4,   KC_F5,   KC_F6,   KC_F11,  XXXXXXX,
+        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, _______,                      _______, KC_F1,   KC_F2,   KC_F3,   KC_F10,  XXXXXXX,
+                                                     XXXXXXX, _______,    _______, XXXXXXX
     ),
 };
 
@@ -74,6 +90,7 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_A ... KC_Z:
         // Danish placement of KC_MINS
         case DK_MINS:
+        case KC_UNDS: // Flip - and _
             add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
             return true;
 
@@ -81,7 +98,6 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_1 ... KC_0:
         case KC_BSPC:
         case KC_DEL:
-        case KC_UNDS:
             return true;
 
         default:
@@ -104,5 +120,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     if (layer_state_cmp(state, EXT)) {
         clear_oneshot_mods();
     }
-    return state;
+    // Less forced delay using this option, compared to setting 'TRI_LAYER_ENABLE'
+    return update_tri_layer_state(state, EXT, SYM, NUM);
 }
