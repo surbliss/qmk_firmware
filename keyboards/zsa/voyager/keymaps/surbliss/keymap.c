@@ -20,16 +20,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
         _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
         _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, _______,
-        _______, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    _______,
+        OS_LCTL, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    OS_RCTL,
         OS_LSFT, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    OS_RSFT, // Only until more elobarate repeat-key
                                                      KC_SPC,  MO(EXT),    MO(SYM), QK_REP
     ),
     // Extend layer
     [EXT] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, C(KC_F), XXXXXXX,                      KC_HOME, KC_PGDN, KC_UP,   KC_PGUP, KC_APP,  XXXXXXX,
-        XXXXXXX, CW_TOGG, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      KC_END,  KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
-        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX ,MO(SYS),                      MO(SYS), KC_BSPC, KC_TAB,  KC_ESC,  KC_ENT,  XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, C(KC_F), XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_APP,  XXXXXXX,
+        XXXXXXX, CW_TOGG, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
+        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX ,MO(SYS),                      KC_ENT,  KC_BSPC, KC_ESC,  KC_TAB,  XXXXXXX, XXXXXXX,
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
     // Symbol layer
