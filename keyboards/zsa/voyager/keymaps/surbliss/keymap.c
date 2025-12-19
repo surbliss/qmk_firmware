@@ -27,9 +27,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Extend layer
     [EXT] = LAYOUT(
         XXXXXXX, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, C(KC_F), C(KC_V),                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_APP,  XXXXXXX,
+        XXXXXXX, XXXXXXX, KC_APP,  XXXXXXX, C(KC_F), C(KC_V),                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX,  XXXXXXX,
         XXXXXXX, CW_TOGG, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
-        XXXXXXX, OS_LALT, C(KC_C), XXXXXXX, XXXXXXX ,MO(SYS),                      KC_ENT,  KC_ESC,  KC_BSPC, KC_TAB,  XXXXXXX, XXXXXXX,
+        XXXXXXX, OS_LALT, C(KC_C), XXXXXXX, XXXXXXX ,MO(SYS),                      KC_ENT,  KC_BSPC, XXXXXXX, KC_TAB,  KC_ESC,  XXXXXXX,
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
     // Symbol layer
@@ -114,6 +114,10 @@ const key_override_t *key_overrides[] = {
 };
 
 
+const uint16_t PROGMEM jk_esc[] = {KC_J, KC_K, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(jk_esc, KC_ESC),
+};
 
 // Use EXT-layer as a 'clear mods' button
 layer_state_t layer_state_set_user(layer_state_t state) {
