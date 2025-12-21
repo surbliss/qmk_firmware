@@ -37,11 +37,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
     // Symbol layer
+    // [SYM] = LAYOUT(
+    //     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    //     XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_PLUS, DK_ASTR, DK_OSTR, DK_MINS, XXXXXXX,
+    //     XXXXXXX, DK_LABK, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_PIPE, DK_EQL,  DK_AE,   DK_ARNG, DK_EXLM, XXXXXXX,
+    //     OS_LSFT, DK_RABK, DK_RPRN, DK_RCBR, DK_RBRC, DK_TILD,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_QUES, OS_LSFT,
+    //                                                  KC_SPC,  _______,    _______, XXXXXXX
+    // ),
     [SYM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_PLUS, DK_ASTR, DK_OSTR, DK_MINS, XXXXXXX,
-        XXXXXXX, DK_LABK, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_PIPE, DK_EQL,  DK_AE,   DK_ARNG, DK_EXLM, XXXXXXX,
-        OS_LSFT, DK_RABK, DK_RPRN, DK_RCBR, DK_RBRC, DK_TILD,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_QUES, OS_LSFT,
+        XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_RABK, DK_PLUS, DK_ASTR, DK_OSTR, DK_MINS, XXXXXXX,
+        XXXXXXX, DK_PIPE, DK_LBRC, DK_LCBR, DK_LPRN, DK_AMPR,                      DK_LABK, DK_TILD,  DK_AE,   DK_ARNG, DK_EXLM, XXXXXXX,
+        OS_LSFT, DK_EQL,  DK_RBRC, DK_RCBR, DK_RPRN, DK_CIRC,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_QUES, OS_LSFT,
                                                      KC_SPC,  _______,    _______, XXXXXXX
     ),
     [NUM] = LAYOUT(
