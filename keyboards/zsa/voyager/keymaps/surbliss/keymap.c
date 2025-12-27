@@ -24,9 +24,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
         _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
         DM_PLY1, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, DM_PLY2,
-        OS_LCTL, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    OS_RCTL,
-        OS_LSFT, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    OS_RSFT, // Only until more elobarate repeat-key
-                                                     KC_SPC,  MO(EXT),    MO(SYM), QK_REP
+        _______, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    _______,
+        _______, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    _______, // Only until more elobarate repeat-key
+                                                     KC_SPC,  MO(EXT),   MO(SYM), KC_LSFT
     ),
     // Extend layer
     [EXT] = LAYOUT(
@@ -36,20 +36,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, OS_LALT, C(KC_C), XXXXXXX, XXXXXXX ,MO(SYS),                      KC_ENT,  KC_BSPC, XXXXXXX, KC_TAB,  KC_ESC,  XXXXXXX,
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
-    // Symbol layer
-    // [SYM] = LAYOUT(
-    //     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    //     XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_PLUS, DK_ASTR, DK_OSTR, DK_MINS, XXXXXXX,
-    //     XXXXXXX, DK_LABK, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_PIPE, DK_EQL,  DK_AE,   DK_ARNG, DK_EXLM, XXXXXXX,
-    //     OS_LSFT, DK_RABK, DK_RPRN, DK_RCBR, DK_RBRC, DK_TILD,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_QUES, OS_LSFT,
-    //                                                  KC_SPC,  _______,    _______, XXXXXXX
-    // ),
     [SYM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_RABK, DK_PLUS, DK_ASTR, DK_OSTR, DK_MINS, XXXXXXX,
-        XXXXXXX, DK_PIPE, DK_LBRC, DK_LCBR, DK_LPRN, DK_AMPR,                      DK_LABK, DK_TILD,  DK_AE,   DK_ARNG, DK_EXLM, XXXXXXX,
-        OS_LSFT, DK_EQL,  DK_RBRC, DK_RCBR, DK_RPRN, DK_CIRC,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_QUES, OS_LSFT,
-                                                     KC_SPC,  _______,    _______, XXXXXXX
+        XXXXXXX, DK_PIPE, DK_LBRC, DK_LCBR, DK_LPRN, DK_AMPR,                      DK_LABK, DK_TILD,  DK_AE,   DK_ARNG, DK_QUES, XXXXXXX,
+        OS_LSFT, DK_EQL,  DK_RBRC, DK_RCBR, DK_RPRN, DK_CIRC,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_EXLM, OS_LSFT,
+                                                     KC_LSFT,  _______,    _______, XXXXXXX
     ),
     [NUM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
