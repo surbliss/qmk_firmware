@@ -31,23 +31,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Extend layer
     [EXT] = LAYOUT(
         XXXXXXX, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
-        XXXXXXX, XXXXXXX, KC_APP,  XXXXXXX, C(KC_F), C(KC_V),                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX,  XXXXXXX,
-        XXXXXXX, CW_TOGG, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
+        XXXXXXX, XXXXXXX, KC_APP,  XXXXXXX, C(KC_F), LCS(KC_V),                    KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, CW_TOGG,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
         XXXXXXX, OS_LALT, C(KC_C), XXXXXXX, XXXXXXX ,MO(SYS),                      KC_ENT,  KC_BSPC, XXXXXXX, KC_TAB,  KC_ESC,  XXXXXXX,
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
     [SYM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_RABK, DK_PLUS, DK_ASTR, DK_OSTR, DK_MINS, XXXXXXX,
-        XXXXXXX, DK_PIPE, DK_LBRC, DK_LCBR, DK_LPRN, DK_AMPR,                      DK_LABK, DK_TILD,  DK_AE,   DK_ARNG, DK_QUES, XXXXXXX,
-        OS_LSFT, DK_EQL,  DK_RBRC, DK_RCBR, DK_RPRN, DK_CIRC,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_EXLM, OS_LSFT,
-                                                     KC_LSFT,  _______,    _______, XXXXXXX
+        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_LABK, DK_TILD,  DK_AE,   DK_ARNG, DK_QUES, KC_RSFT, // For capital ÆØÅ
+        XXXXXXX, DK_EQL,  DK_RPRN, DK_RCBR, DK_RBRC, DK_CIRC,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_EXLM, XXXXXXX,
+                                                     _______,  _______,    _______, XXXXXXX
     ),
     [NUM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    DK_COMM, XXXXXXX,
-        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      XXXXXXX, KC_4,    KC_5,    KC_6,    DK_DOT,  XXXXXXX,
-        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_1,    KC_2,    KC_3,    KC_0,    XXXXXXX,
+        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      XXXXXXX, KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
+        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_1,    KC_2,    KC_3,    DK_DOT,  XXXXXXX,
                                                      XXXXXXX, _______,    _______, XXXXXXX
     ),
     [SYS] = LAYOUT(
@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [GNV] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, KC_KP_3, KC_KP_4, KC_UP,   KC_KP_5, KC_KP_6,                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, KC_KP_3, KC_KP_4, KC_UP,   KC_KP_5, KC_KP_6,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, KC_KP_2, KC_LEFT, KC_DOWN, KC_RGHT, KC_KP_7,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                      XXXXXXX, _______,    XXXXXXX, XXXXXXX
