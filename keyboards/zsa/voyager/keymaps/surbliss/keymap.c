@@ -7,17 +7,31 @@
 #include "quantum.h"
 #include "stm32f303xc.h"
 #include QMK_KEYBOARD_H
-#include "da.h"
+// #include "da.h" // Imported by sendstring_danish.h, hence not needed?
+#include "sendstring_danish.h"
 
 enum {
     DEF,
     EXT,
     SYM,
+    MAC, // Macros
     SYS,
     NUM,
     GAM,
     GNV // GAME NAV layer
 
+};
+
+// Macros
+enum custom_keycodes {
+    CODEBLC = SAFE_RANGE,
+    LARROW,
+    RARROW,
+    LDARROW,
+    RDARROW,
+    LPIPE,
+    RPIPE,
+    RETSEMI,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -39,9 +53,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [SYM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_RABK, DK_PLUS, DK_ASTR, DK_OSTR, DK_MINS, XXXXXXX,
-        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_LABK, DK_TILD,  DK_AE,   DK_ARNG, DK_QUES, KC_RSFT, // For capital ÆØÅ
+        OSL(MAC), DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_LABK, DK_TILD,  DK_AE,   DK_ARNG, DK_QUES, KC_RSFT, // For capital ÆØÅ
         XXXXXXX, DK_EQL,  DK_RPRN, DK_RCBR, DK_RBRC, DK_CIRC,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_EXLM, XXXXXXX,
                                                      _______,  _______,    _______, XXXXXXX
+    ),
+    [MAC] = LAYOUT(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, CODEBLC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, LDARROW, XXXXXXX, RDARROW, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, LARROW,  XXXXXXX, RARROW,  XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      RETSEMI, LPIPE,   XXXXXXX, RPIPE,   XXXXXXX, XXXXXXX,
+                                                     XXXXXXX, _______,    _______, XXXXXXX
     ),
     [NUM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -73,6 +94,59 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                      XXXXXXX, _______,    XXXXXXX, XXXXXXX
     ),
 
+};
+
+
+
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case CODEBLC:
+            if (record->event.pressed) {
+                // ``` + shift-enter
+                // Using 'SEND_STRING("```")' adds spaces between (to compensate for normally being dead keys)
+                SEND_STRING(SS_DOWN(X_LSFT)SS_TAP(X_EQL)SS_TAP(X_EQL)SS_TAP(X_EQL)SS_LSFT("\n")SS_UP(X_LSFT));
+            }
+            break;
+        case LARROW:
+            if (record->event.pressed) {
+                // ->
+                SEND_STRING(" <- "  );
+            }
+            break;
+        case LDARROW:
+            if (record->event.pressed) {
+                SEND_STRING(" <= ");
+            }
+            break;
+        case LPIPE:
+            if (record->event.pressed) {
+                SEND_STRING(" <| ");
+            }
+            break;
+        case RARROW:
+            if (record->event.pressed) {
+                SEND_STRING(" -> ");
+            }
+            break;
+        case RDARROW:
+            if (record->event.pressed) {
+                SEND_STRING(" => ");
+            }
+            break;
+        case RPIPE:
+            if (record->event.pressed) {
+                SEND_STRING(" |> ");
+            }
+            break;
+        case RETSEMI:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_END) ";\n");
+            }
+            break;
+
+    }
+    return true;
 };
 
 
