@@ -158,8 +158,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_TAB:
             if (shifted && ctrled) return C(KC_TAB);
             if (ctrled) return LCS(KC_TAB);
-            // Just delete the last space
-            return KC_BACKSPACE;
+            if (shifted) return KC_TAB;
+            return S(KC_TAB);
         /// Return after punctuation
         // Also matches shifted, e.g. ; or :
         case DK_DOT:
