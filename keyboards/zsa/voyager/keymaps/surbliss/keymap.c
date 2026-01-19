@@ -4,6 +4,7 @@
 
 #include "action_layer.h"
 #include "keycodes.h"
+#include "keymap_danish.h"
 #include "quantum.h"
 #include "stm32f303xc.h"
 #include QMK_KEYBOARD_H
@@ -171,8 +172,12 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case DK_RPRN:
         case DK_LBRC:
         case DK_RBRC:
+        case DK_SCLN:
+        case DK_COLN:
              return KC_ENTER;
-        case KC_SPACE: return OS_LSFT;
+        case KC_ENTER:
+            if (shifted) return KC_ENTER;
+            if (!shifted) return S(KC_ENTER);
     }
     return KC_TRNS;  // Defer to default definitions.
 }
