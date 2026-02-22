@@ -20,7 +20,6 @@ enum {
     NUM,
     GAM,
     GNV // GAME NAV layer
-
 };
 
 // Macros
@@ -161,11 +160,10 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
             if (ctrled) return LCS(KC_TAB);
             if (shifted) return KC_TAB;
             return S(KC_TAB);
-        /// Return after punctuation
-        // Also matches shifted, e.g. ; or :
+        // /// Return after punctuation
+        // // Symbols you might want a newline after
         case DK_DOT:
         case DK_COMM:
-        // Symbols you might want a newline after
         case DK_LCBR:
         case DK_RCBR:
         case DK_LPRN:
@@ -176,9 +174,9 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case DK_COLN:
              return KC_ENTER;
         case KC_ENTER:
-            if (shifted) return KC_ENTER;
-            if (!shifted) return S(KC_ENTER);
-    }
+            // When quickly going from new-line, make shift instead.
+            return KC_LSFT;
+}
     return KC_TRNS;  // Defer to default definitions.
 }
 
