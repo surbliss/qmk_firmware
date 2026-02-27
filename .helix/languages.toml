@@ -1,3 +1,10 @@
 [[language]]
 name = "c"
 rulers = [17, 26, 35, 44, 53, 62, 74, 83, 92, 101, 110, 119, 128]
+scope = "source.c"
+injection-regex = "c"
+file-types = ["c"]                                                # TODO: ["h"]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = ["clangd"]
+auto-format = true
