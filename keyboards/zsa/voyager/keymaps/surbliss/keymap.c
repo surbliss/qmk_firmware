@@ -6,6 +6,7 @@
 #include "keycodes.h"
 #include "keymap_danish.h"
 #include "quantum.h"
+#include "quantum_keycodes.h"
 #include "stm32f303xc.h"
 #include QMK_KEYBOARD_H
 // #include "da.h" // Imported by sendstring_danish.h, hence not needed?
@@ -179,9 +180,14 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case DK_SCLN:
         case DK_COLN:
             return RET_SFT; // Press shift-enter, if held keeps holding shift
+        // Keys with bad defaults (so just retunr shift instead)
+        case KC_BACKSPACE: // 'Delete' normally
         case KC_ENTER:
             // When quickly going from new-line, make shift instead.
             return KC_LSFT;
+        // Helix-stuff
+        case KC_X:          // Select line
+            return A(KC_X); // Undo line selection
     }
     return KC_TRNS; // Defer to default definitions.
 }
@@ -195,13 +201,11 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_UNDS:                        // Flip - and _
             add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
             return true;
-
         // Keycodes that continue Caps Word, without shifting.
         case KC_1 ... KC_0:
         case KC_BSPC:
         case KC_DEL:
             return true;
-
         default:
             return false; // Deactivate Caps Word.
     }
