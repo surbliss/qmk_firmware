@@ -32,8 +32,10 @@ enum custom_keycodes {
     LPIPE,
     RPIPE,
     RETSEMI,
+    RET_SFT // Return + Shift if holding
 };
 
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
         _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
@@ -95,9 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
 };
-
-
-
+// clang-format on
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -105,13 +105,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 // ``` + shift-enter
                 // Using 'SEND_STRING("```")' adds spaces between (to compensate for normally being dead keys)
-                SEND_STRING(SS_DOWN(X_LSFT)SS_TAP(X_EQL)SS_TAP(X_EQL)SS_TAP(X_EQL)SS_LSFT("\n")SS_UP(X_LSFT));
+                SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_EQL) SS_TAP(X_EQL) SS_TAP(X_EQL) SS_LSFT("\n") SS_UP(X_LSFT));
             }
             break;
         case LARROW:
             if (record->event.pressed) {
                 // ->
-                SEND_STRING(" <- "  );
+                SEND_STRING(" <- ");
             }
             break;
         case LDARROW:
@@ -144,15 +144,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(SS_TAP(X_END) ";\n");
             }
             break;
-
+        case RET_SFT:
+            if (record->event.pressed) {
+                register_mods(MOD_BIT(KC_LSFT));
+                tap_code(KC_ENTER);
+            } else {
+                unregister_mods(MOD_BIT(KC_LSFT));
+            }
+            return false;
     }
     return true;
 };
 
-
 // Additional definitions for Alternate repeat-key
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
-    bool ctrled = mods & MOD_MASK_CTRL;
+    bool ctrled  = mods & MOD_MASK_CTRL;
     bool shifted = mods & MOD_MASK_SHIFT;
     switch (keycode) {
         case KC_TAB:
@@ -172,12 +178,12 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case DK_RBRC:
         case DK_SCLN:
         case DK_COLN:
-             return KC_ENTER;
+            return RET_SFT; // Press shift-enter, if held keeps holding shift
         case KC_ENTER:
             // When quickly going from new-line, make shift instead.
             return KC_LSFT;
-}
-    return KC_TRNS;  // Defer to default definitions.
+    }
+    return KC_TRNS; // Defer to default definitions.
 }
 
 bool caps_word_press_user(uint16_t keycode) {
@@ -186,8 +192,8 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_A ... KC_Z:
         // Danish placement of KC_MINS
         case DK_MINS:
-        case KC_UNDS: // Flip - and _
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+        case KC_UNDS:                        // Flip - and _
+            add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
             return true;
 
         // Keycodes that continue Caps Word, without shifting.
@@ -197,7 +203,7 @@ bool caps_word_press_user(uint16_t keycode) {
             return true;
 
         default:
-            return false;  // Deactivate Caps Word.
+            return false; // Deactivate Caps Word.
     }
 }
 
@@ -205,13 +211,10 @@ bool caps_word_press_user(uint16_t keycode) {
 const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, DK_QUOT, DK_DQUO);
 
 // This globally defines all key overrides to be used
-const key_override_t *key_overrides[] = {
-	&delete_key_override
-};
+const key_override_t *key_overrides[] = {&delete_key_override};
 
-
-const uint16_t PROGMEM jk_esc[] = {KC_J, KC_K, COMBO_END};
-combo_t key_combos[] = {
+const uint16_t PROGMEM jk_esc[]     = {KC_J, KC_K, COMBO_END};
+combo_t                key_combos[] = {
     COMBO(jk_esc, KC_ESC),
 };
 
@@ -222,7 +225,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     }
     // Less forced delay using this option, compared to setting 'TRI_LAYER_ENABLE'
     return update_tri_layer_state(state, EXT, SYM, NUM);
-
 }
 
 // Runs after all other is done. See zsa/voyager/readme.md for transport-function documentation
