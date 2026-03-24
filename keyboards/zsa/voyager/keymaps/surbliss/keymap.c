@@ -55,9 +55,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [SYM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_ASTR, DK_LABK, DK_RABK, DK_OSTR, DK_MINS, XXXXXXX,
-        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_PLUS, DK_EQL,  DK_AE,   DK_ARNG, DK_TILD, XXXXXXX,
-        KC_LSFT, DK_EXLM, DK_RPRN, DK_RCBR, DK_RBRC, DK_CIRC,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_QUES, OSL(MAC),
+        XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_LABK, DK_RABK, DK_OSTR, DK_MINS, XXXXXXX,
+        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_TILD, DK_EQL,  DK_AE,   DK_ARNG, DK_PLUS, XXXXXXX,
+        KC_LSFT, DK_QUES, DK_RPRN, DK_RCBR, DK_RBRC, DK_EXLM,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_ASTR, OSL(MAC),
                                                      _______,  _______,    _______, _______
     ),
     [MAC] = LAYOUT(
@@ -70,8 +70,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NUM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      KC_0,    KC_4,    KC_5,    KC_6,    DK_COMM, XXXXXXX,
-        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_0,    KC_1,    KC_2,    KC_3,    DK_DOT,  XXXXXXX,
+        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      DK_DOT,  KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
+        XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      DK_COMM, KC_1,    KC_2,    KC_3,    KC_0,    XXXXXXX,
                                                      XXXXXXX, _______,    _______, XXXXXXX
     ),
     [SYS] = LAYOUT(
