@@ -5,6 +5,7 @@
 #include "action_layer.h"
 #include "keycodes.h"
 #include "keymap_danish.h"
+#include "layer_lock.h"
 #include "quantum.h"
 #include "quantum_keycodes.h"
 #include "stm32f303xc.h"
@@ -34,13 +35,13 @@ enum custom_keycodes {
     RPIPE,
     RETSEMI,
     RET_SFT, // Return + Shift if holding
-    DBL_CLN
+    DBL_CLN,
 };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
-        _______, DM_PLY1, DM_PLY2, _______, _______, _______,                      _______, _______, _______, DM_PLY2, DM_PLY1, _______,
+        QK_LLCK, DM_PLY1, DM_PLY2, _______, _______, _______,                      _______, _______, _______, DM_PLY2, DM_PLY1, _______,
         _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, DK_ARNG,
         _______, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
         _______, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    DK_AE,
@@ -48,36 +49,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // Extend layer
     [EXT] = LAYOUT(
-        XXXXXXX, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
+        _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
         XXXXXXX, XXXXXXX, KC_APP,  XXXXXXX, C(KC_F), C(KC_V),                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, CW_TOGG,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
-        MO(SYS), OS_LALT, C(KC_C), XXXXXXX, C(KC_P) ,C(KC_X),                      KC_ENT,  KC_BSPC, RETSEMI, KC_TAB,  KC_ESC,  MO(SYS),
+        XXXXXXX, CODEBLC, OS_LGUI, OS_LSFT, OS_LCTL, CW_TOGG,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
+        MO(SYS), OS_LALT, C(KC_C), XXXXXXX, C(KC_P) ,C(KC_X),                      KC_ENT,  KC_BSPC, S(KC_ENT),KC_TAB, KC_ESC,  MO(SYS),
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
     [SYM] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_LABK, DK_RABK, DBL_CLN, DK_MINS, XXXXXXX,
-        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_EXLM, DK_EQL,  DK_ASTR, DK_PLUS, DK_QUES, XXXXXXX,
-        XXXXXXX, CODEBLC, DK_RPRN, DK_RCBR, DK_RBRC, XXXXXXX,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_TILD, XXXXXXX,
+        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_QUES, DK_EQL,  DK_ASTR, DK_PLUS, DK_EXLM, XXXXXXX,
+        XXXXXXX, KC_GRV,  DK_RPRN, DK_RCBR, DK_RBRC, KC_RBRC,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_TILD, XXXXXXX,
                                                      _______,  _______,    _______, _______
     ),
     [MAC] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, CODEBLC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, LARROW,  XXXXXXX, RARROW,  XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, LDARROW, XXXXXXX, RDARROW, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      RETSEMI, LPIPE,   XXXXXXX, RPIPE,   XXXXXXX, _______,
                                                      XXXXXXX, _______,    _______, XXXXXXX
     ),
     [NUM] = LAYOUT(
-        TG(NUM), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    S(DK_MINS), XXXXXXX,
         XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, KC_SPC,                       DK_DOT,  KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
         XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      DK_COMM, KC_1,    KC_2,    KC_3,    KC_0,    XXXXXXX,
                                                      _______, _______,    _______, _______
     ),
     [SYS] = LAYOUT(
-        RM_SPDD, RM_SPDU, RM_PREV, RM_NEXT, RM_VALD, RM_VALU,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, KC_BRID, KC_BRIU,                      XXXXXXX, KC_F7,   KC_F8,   KC_F9,   KC_F12,  XXXXXXX,
+        _______, RM_SPDU, RM_PREV, RM_NEXT, RM_VALD, RM_VALU,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        RM_SPDD, KC_MUTE, KC_VOLD, KC_VOLU, KC_BRID, KC_BRIU,                      XXXXXXX, KC_F7,   KC_F8,   KC_F9,   KC_F12,  XXXXXXX,
         XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      XXXXXXX, KC_F4,   KC_F5,   KC_F6,   KC_F11,  XXXXXXX,
         _______, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      _______, KC_F1,   KC_F2,   KC_F3,   KC_F10,  XXXXXXX,
                                                      XXXXXXX, _______,    _______, XXXXXXX
@@ -233,6 +234,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     if (layer_state_cmp(state, EXT)) {
         clear_oneshot_mods();
     }
+    if (is_layer_locked(NUM)) return state;
     // Less forced delay using this option, compared to setting 'TRI_LAYER_ENABLE'
     return update_tri_layer_state(state, EXT, SYM, NUM);
 }
