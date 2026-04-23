@@ -33,16 +33,17 @@ enum custom_keycodes {
     LPIPE,
     RPIPE,
     RETSEMI,
-    RET_SFT // Return + Shift if holding
+    RET_SFT, // Return + Shift if holding
+    DBL_CLN
 };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
-        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-        DM_PLY2, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, DM_PLY2,
-        DM_PLY1, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DM_PLY1,
-        _______, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    _______, // Only until more elobarate repeat-key
+        _______, DM_PLY1, DM_PLY2, _______, _______, _______,                      _______, _______, _______, DM_PLY2, DM_PLY1, _______,
+        _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, DK_ARNG,
+        _______, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
+        _______, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    DK_AE,
                                                      KC_SPC,  MO(EXT),   MO(SYM), KC_LSFT
     ),
     // Extend layer
@@ -50,14 +51,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
         XXXXXXX, XXXXXXX, KC_APP,  XXXXXXX, C(KC_F), C(KC_V),                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, CW_TOGG,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
-        MO(SYS), OS_LALT, C(KC_C), XXXXXXX, C(KC_P) ,C(KC_X),                      KC_ENT,  KC_BSPC, XXXXXXX, KC_TAB,  KC_ESC,  MO(SYS),
+        MO(SYS), OS_LALT, C(KC_C), XXXXXXX, C(KC_P) ,C(KC_X),                      KC_ENT,  KC_BSPC, RETSEMI, KC_TAB,  KC_ESC,  MO(SYS),
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
     [SYM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_LABK, DK_RABK, DK_OSTR, DK_MINS, XXXXXXX,
-        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_TILD, DK_EQL,  DK_AE,   DK_ARNG, DK_PLUS, XXXXXXX,
-        KC_LSFT, DK_QUES, DK_RPRN, DK_RCBR, DK_RBRC, DK_EXLM,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_ASTR, OSL(MAC),
+        XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_LABK, DK_RABK, DBL_CLN, DK_MINS, XXXXXXX,
+        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_EXLM, DK_EQL,  DK_ASTR, DK_PLUS, DK_QUES, XXXXXXX,
+        XXXXXXX, CODEBLC, DK_RPRN, DK_RCBR, DK_RBRC, XXXXXXX,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_TILD, XXXXXXX,
                                                      _______,  _______,    _______, _______
     ),
     [MAC] = LAYOUT(
@@ -68,11 +69,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                      XXXXXXX, _______,    _______, XXXXXXX
     ),
     [NUM] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        TG(NUM), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    S(DK_MINS), XXXXXXX,
         XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, KC_SPC,                       DK_DOT,  KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
         XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      DK_COMM, KC_1,    KC_2,    KC_3,    KC_0,    XXXXXXX,
-                                                     XXXXXXX, _______,    _______, XXXXXXX
+                                                     _______, _______,    _______, _______
     ),
     [SYS] = LAYOUT(
         RM_SPDD, RM_SPDU, RM_PREV, RM_NEXT, RM_VALD, RM_VALU,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -142,6 +143,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RETSEMI:
             if (record->event.pressed) {
                 SEND_STRING(SS_TAP(X_END) ";\n");
+            }
+            break;
+        case DBL_CLN:
+            if (record->event.pressed) {
+                SEND_STRING("::");
             }
             break;
         case RET_SFT:
@@ -216,8 +222,9 @@ const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, DK_QUOT
 // This globally defines all key overrides to be used
 const key_override_t *key_overrides[] = {&delete_key_override};
 
-const uint16_t PROGMEM jk_esc[]     = {KC_J, KC_K, COMBO_END};
-combo_t                key_combos[] = {
+const uint16_t PROGMEM jk_esc[] = {KC_J, KC_K, COMBO_END};
+
+combo_t key_combos[] = {
     COMBO(jk_esc, KC_ESC),
 };
 
@@ -231,12 +238,13 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 // Runs after all other is done. See zsa/voyager/readme.md for transport-function documentation
+// Update: Make bool check first, so this doesn't constantly refire!
+
+static bool was_connected = true;
 
 void housekeeping_task_user(void) {
-    if (!is_transport_connected()) {
-        set_single_default_layer(GAM);
-    }
-    if (is_transport_connected()) {
-        set_single_default_layer(DEF);
-    }
+    bool connected = is_transport_connected();
+    if (connected == was_connected) return;
+    was_connected = connected;
+    set_single_default_layer(connected ? DEF : GAM);
 }
