@@ -21,7 +21,7 @@ enum {
     SYS,
     NUM,
     GAM,
-    GNV // GAME NAV layer
+    GNV, // GAME NAV layer
 };
 
 // Macros
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // Extend layer
     [EXT] = LAYOUT(
-        XXXXXXX, XXXXXXX, KC_APP,  XXXXXXX, C(KC_F), C(KC_V),                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, KC_APP,  XXXXXXX, C(KC_F), C(KC_V),                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, TO(GAM),
         XXXXXXX, CODEBLC, OS_LGUI, OS_LSFT, OS_LCTL, CW_TOGG,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
         MO(SYS), OS_LALT, C(KC_C), XXXXXXX, C(KC_P) ,C(KC_X),                      KC_ENT,  KC_BSPC, S(KC_ENT),KC_TAB, KC_ESC,  MO(SYS),
         _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
@@ -85,20 +85,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // Gaming layer, only active if right keyboard is disconnected
     [GAM] = LAYOUT(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO(DEF),
-        KC_KP_1, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-        KC_KP_0, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                                     KC_LSFT, MO(GNV),    XXXXXXX, XXXXXXX
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
+        KC_KP_1, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    DK_ARNG,
+        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,    DK_AE,   DK_OSTR,
+        KC_KP_0, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    DK_DOT,  DK_COMM, DK_MINS, XXXXXXX,
+                                                     KC_LSFT, MO(GNV),    TO(DEF), XXXXXXX
     ),
     [GNV] = LAYOUT(
         XXXXXXX, KC_KP_3, KC_KP_4, KC_UP,   KC_KP_5, KC_KP_6,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         KC_KP_8, KC_KP_2, KC_LEFT, KC_DOWN, KC_RGHT, KC_KP_7,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         KC_KP_9, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                                     XXXXXXX, _______,    XXXXXXX, XXXXXXX
+                                                     XXXXXXX, _______,    TO(DEF), XXXXXXX
     ),
-
 };
 // clang-format on
 
