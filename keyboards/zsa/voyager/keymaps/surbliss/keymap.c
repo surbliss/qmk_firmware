@@ -49,9 +49,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // Extend layer
     [EXT] = LAYOUT(
+        // TODO: Don't think all these 'copy/paste' shortcuts are worth.
+        // Instead, find way to add modifier keys to both hands, so pressing these is not so awkward.
         XXXXXXX, XXXXXXX, KC_APP,  XXXXXXX, C(KC_F), C(KC_V),                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, TO(GAM),
-        XXXXXXX, CODEBLC, OS_LGUI, OS_LSFT, OS_LCTL, CW_TOGG,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
-        MO(SYS), OS_LALT, C(KC_C), XXXXXXX, C(KC_P) ,C(KC_X),                      KC_ENT,  KC_BSPC, S(KC_ENT),KC_TAB, KC_ESC,  MO(SYS),
+        XXXXXXX, KC_MEH,  OS_LGUI, OS_LSFT, OS_LCTL, C(KC_B),                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
+        MO(SYS), OS_LALT, C(KC_C), CODEBLC, C(KC_P) ,C(KC_X),                      KC_ENT,  KC_BSPC, S(KC_ENT),KC_TAB, KC_ESC,  MO(SYS),
         _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
@@ -71,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NUM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    S(DK_MINS), TO(GAM),
-        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, KC_SPC,                       DK_DOT,  KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
+        XXXXXXX, KC_MEH,  OS_LGUI, OS_LSFT, OS_LCTL, KC_SPC,                       DK_DOT,  KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
         XXXXXXX, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      DK_COMM, KC_1,    KC_2,    KC_3,    KC_0,    XXXXXXX,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                      _______, _______,    _______, _______
