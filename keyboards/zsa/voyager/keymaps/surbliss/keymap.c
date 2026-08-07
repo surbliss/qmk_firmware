@@ -51,9 +51,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [EXT] = LAYOUT(
         // TODO: Don't think all these 'copy/paste' shortcuts are worth.
         // Instead, find way to add modifier keys to both hands, so pressing these is not so awkward.
-        XXXXXXX, XXXXXXX, KC_APP,  XXXXXXX, C(KC_F), C(KC_V),                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, TO(GAM),
-        XXXXXXX, KC_MEH,  OS_LGUI, OS_LSFT, OS_LCTL, C(KC_B),                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  XXXXXXX,
-        MO(SYS), OS_LALT, C(KC_C), CODEBLC, C(KC_P) ,C(KC_X),                      KC_ENT,  KC_BSPC, S(KC_ENT),KC_TAB, KC_ESC,  MO(SYS),
+        // Am keeping the tmux prefix key tho, for now (can be held down to combine with movement keys)
+        // NOTE: Possible idea: Replace ' and - on main layer with Return and Backspace respectively? Maaaybe...
+        // Downside: Multiple 'Backspace' presses is annoying ...
+        // Could also use spaces to the left/right of respective pinkies (and move æ up on DK_MINS place)
+        XXXXXXX, XXXXXXX, CW_TOGG, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_END,  KC_APP,  XXXXXXX, TO(GAM),
+        CODEBLC, KC_MEH,  KC_LGUI, KC_LSFT, KC_LCTL, C(KC_B),                      KC_PGDN, KC_RCTL, KC_RSFT, KC_RGUI, KC_MEH,  XXXXXXX,
+        MO(SYS), KC_LALT, KC_TAB,  S(KC_ENT),KC_BSPC,KC_ENT,                       KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_LALT, MO(SYS),
         _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
@@ -64,6 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                      _______,  _______,    _______, _______
     ),
+    // NOTE: No way to access this layer, for now
     [MAC] = LAYOUT(
         XXXXXXX, CODEBLC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, LARROW,  XXXXXXX, RARROW,  XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, LDARROW, XXXXXXX, RDARROW, XXXXXXX, XXXXXXX,
