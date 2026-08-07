@@ -56,10 +56,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // NOTE: Possible idea: Replace ' and - on main layer with Return and Backspace respectively? Maaaybe...
         // Downside: Multiple 'Backspace' presses is annoying ...
         // Could also use spaces to the left/right of respective pinkies (and move æ up on DK_MINS place)
-        XXXXXXX, XXXXXXX, CW_TOGG, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_END,  KC_APP,  XXXXXXX, TO(GAM),
-        CODEBLC, KC_MEH,  KC_LGUI, KC_LSFT, KC_LCTL, C(KC_B),                      KC_PGDN, KC_RCTL, KC_RSFT, KC_RGUI, KC_MEH,  XXXXXXX,
-        MO(SYS), KC_LALT, KC_TAB,  S(KC_ENT),KC_BSPC,KC_ENT,                       KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_LALT, MO(SYS),
-        _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
+        // TODO: 2: Now the edit-keys on left hand might not be needed, so consider possible replacements
+        XXXXXXX, XXXXXXX, CW_TOGG, CODEBLC, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_END,  KC_APP,  XXXXXXX, TO(GAM),
+        _______, KC_MEH,  KC_LGUI, KC_LSFT, KC_LCTL, C(KC_B),                      KC_PGDN, KC_RCTL, KC_RSFT, KC_RGUI, KC_MEH,  _______,
+        _______, KC_LALT, KC_TAB,  S(KC_ENT),KC_BSPC,KC_ENT,                       KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_LALT, _______,
+        _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, MO(SYS),                      MO(SYS), XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
     [SYM] = LAYOUT(
