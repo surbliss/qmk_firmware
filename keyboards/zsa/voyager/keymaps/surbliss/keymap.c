@@ -41,10 +41,11 @@ enum custom_keycodes {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
-        _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, DK_ARNG,
-        KC_ENT , KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
-        KC_BSPC, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    DK_AE,
-        QK_LLCK, DM_PLY1, DM_PLY2, _______, _______, _______,                      _______, _______, _______, DM_PLY2, DM_PLY1, _______,
+        // TODO: Move æøå so we can put Backspace + Enter on the rightmost column, and Tab + Esc on leftmost
+        _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, _______,
+        KC_ESC,  KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    KC_BSPC,
+        KC_TAB,  KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    KC_ENT,
+        QK_LLCK, DM_PLY1, DM_PLY2, _______, _______, _______,                      _______, DK_AE,   DK_OSTR, DK_ARNG, _______, _______,
                                                      KC_SPC,  MO(EXT),   MO(SYM), KC_LSFT
     ),
     // Extend layer
