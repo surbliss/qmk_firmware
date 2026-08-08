@@ -1,5 +1,5 @@
 // Copyright 2023 ZSA Technology Labs, Inc <@zsa>
-// Copyright 2023 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
+// Copyright 2023 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "action_layer.h"
@@ -45,8 +45,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, _______,
         KC_ESC,  KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    KC_BSPC,
         KC_TAB,  KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    KC_ENT,
-        QK_LLCK, DM_PLY1, DM_PLY2, _______, _______, _______,                      _______, DK_AE,   DK_OSTR, DK_ARNG, _______, _______,
-                                                     KC_SPC,  MO(EXT),   MO(SYM), KC_LSFT
+        QK_LLCK, DM_PLY1, DM_PLY2, _______, _______, _______,                      CW_TOGG, DK_AE,   DK_OSTR, DK_ARNG, _______, _______,
+                                                     KC_LSFT, MO(EXT),    MO(SYM), KC_SPC
     ),
     // Extend layer
     [EXT] = LAYOUT(
@@ -57,18 +57,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // Downside: Multiple 'Backspace' presses is annoying ...
         // Could also use spaces to the left/right of respective pinkies (and move æ up on DK_MINS place)
         // TODO: 2: Now the edit-keys on left hand might not be needed, so consider possible replacements
-        XXXXXXX, XXXXXXX, CW_TOGG, CODEBLC, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_END,  KC_APP,  XXXXXXX, TO(GAM),
-        _______, KC_MEH,  KC_LGUI, KC_LSFT, KC_LCTL, C(KC_B),                      KC_PGDN, KC_RCTL, KC_RSFT, KC_RGUI, KC_MEH,  _______,
-        _______, KC_LALT, KC_TAB,  S(KC_ENT),KC_BSPC,KC_ENT,                       KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_LALT, _______,
+        CODEBLC, KC_GRV,  KC_RBRC, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_APP,  TO(GAM),
+        KC_RALT, KC_MEH,  KC_LGUI, KC_LSFT, KC_LCTL, C(KC_B),                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, _______,
+        _______, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_ENT,  KC_BSPC, KC_DEL,  KC_TAB,  XXXXXXX, _______,
         _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, MO(SYS),                      MO(SYS), XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
     [SYM] = LAYOUT(
-        XXXXXXX, DK_GRV,  DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_LABK, DK_RABK, DBL_CLN, DK_MINS, XXXXXXX,
-        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_QUES, DK_EQL,  DK_ASTR, DK_PLUS, DK_EXLM, XXXXXXX,
-        XXXXXXX, KC_GRV,  DK_RPRN, DK_RCBR, DK_RBRC, KC_RBRC,                      S(DK_COMM), DK_SLSH, DK_BSLS, S(DK_DOT), DK_TILD, XXXXXXX,
+        XXXXXXX, DK_EXLM, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_LABK, DK_RABK, DK_ASTR, DK_PLUS, XXXXXXX,
+        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_EQL,  KC_RCTL, KC_RSFT, KC_RGUI, KC_MEH,  KC_RALT,
+        XXXXXXX, DK_GRV,  DK_RPRN, DK_RCBR, DK_RBRC, DK_QUES,                      XXXXXXX, DK_SLSH, DK_BSLS, DK_TILD, KC_LALT, XXXXXXX,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                                     _______,  _______,    _______, _______
+                                                     _______,  _______,   _______, XXXXXXX
     ),
     // NOTE: No way to access this layer, for now
     [MAC] = LAYOUT(
@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NUM] = LAYOUT(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    S(DK_MINS), TO(GAM),
-        XXXXXXX, KC_MEH,  KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      DK_DOT,  KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
+        KC_RALT, KC_MEH,  KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      DK_DOT,  KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
         XXXXXXX, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      DK_COMM, KC_1,    KC_2,    KC_3,    KC_SPC,  XXXXXXX,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                      _______, _______,    _______, _______
@@ -95,8 +95,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Gaming layer, only active if right keyboard is disconnected
     [GAM] = LAYOUT(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
-        KC_KP_1, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    DK_ARNG,
-        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,    DK_AE,   DK_OSTR,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    DK_ARNG,
+        KC_KP_1, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,    DK_AE,   DK_OSTR,
         KC_KP_0, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    DK_DOT,  DK_COMM, DK_MINS, XXXXXXX,
                                                      KC_LSFT, MO(GNV),    TO(DEF), XXXXXXX
     ),
