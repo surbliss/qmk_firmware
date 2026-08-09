@@ -57,16 +57,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // Downside: Multiple 'Backspace' presses is annoying ...
         // Could also use spaces to the left/right of respective pinkies (and move æ up on DK_MINS place)
         // TODO: 2: Now the edit-keys on left hand might not be needed, so consider possible replacements
-        CODEBLC, KC_GRV,  KC_RBRC, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_APP,  TO(GAM),
+        // NOTE: Top row here is a bunch of accents, grouping them so easier to find, since they are used rarely.
+        // eg: ½¨^. TODO: Add more
+        CODEBLC, KC_GRV,  KC_RBRC, DK_CIRC, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_APP,  TO(GAM),
         KC_RALT, KC_MEH,  KC_LGUI, KC_LSFT, KC_LCTL, C(KC_B),                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, _______,
         _______, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_ENT,  KC_BSPC, KC_DEL,  KC_TAB,  XXXXXXX, _______,
         _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, MO(SYS),                      MO(SYS), XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
                                                      XXXXXXX, _______,    _______, QK_AREP
     ),
     [SYM] = LAYOUT(
-        XXXXXXX, DK_EXLM, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_CIRC, DK_LABK, DK_RABK, DK_ASTR, DK_PLUS, XXXXXXX,
-        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_EQL,  KC_RCTL, KC_RSFT, KC_RGUI, KC_MEH,  KC_RALT,
-        XXXXXXX, DK_GRV,  DK_RPRN, DK_RCBR, DK_RBRC, DK_QUES,                      XXXXXXX, DK_SLSH, DK_BSLS, DK_TILD, KC_LALT, XXXXXXX,
+        XXXXXXX, DK_EXLM, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_PLUS, DK_LABK, DK_EQL,  DK_RABK, DK_ASTR, XXXXXXX,
+        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_QUES, KC_RCTL, KC_RSFT, KC_RGUI, KC_MEH,  KC_RALT,
+        XXXXXXX, DK_GRV,  DK_RPRN, DK_RCBR, DK_RBRC, XXXXXXX,                      DK_CIRC, DK_SLSH, DK_BSLS, DK_TILD, KC_LALT, XXXXXXX,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                      _______,  _______,   _______, XXXXXXX
     ),
