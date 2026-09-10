@@ -6,6 +6,7 @@
 #include "keycodes.h"
 #include "keymap_danish.h"
 #include "layer_lock.h"
+#include "modifiers.h"
 #include "quantum.h"
 #include "quantum_keycodes.h"
 #include "stm32f303xc.h"
@@ -15,6 +16,8 @@
 
 enum {
     DEF,
+    LFT,
+    RGT,
     EXT,
     SYM,
     MAC, // Macros
@@ -41,56 +44,44 @@ enum custom_keycodes {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
-        // TODO: Move æøå so we can put Backspace + Enter on the rightmost column, and Tab + Esc on leftmost
-        _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, DK_ARNG,
-        CW_TOGG, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
-        _______, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    DK_AE,
-        QK_LLCK, DM_PLY1, DM_PLY2, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
-                                                     KC_LSFT, MO(EXT),    MO(SYM), KC_SPC
+        _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_ARNG, _______,
+        _______, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
+        DK_BSLS, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    DK_AE,
+        QK_LLCK, DM_PLY1, DM_PLY2, _______, _______, CW_TOGG,                      _______, LDARROW, LARROW,  RARROW,  RDARROW, _______,
+                                                     MO(EXT), MO(LFT),    MO(RGT), KC_SPC
     ),
-    // Extend layer
+    [LFT] = LAYOUT(
+        _______, _______,  KC_2,   KC_3,    KC_4,    KC_5,                         _______, _______, _______, _______, _______, _______,
+        _______, KC_1,    KC_LGUI, KC_LSFT, KC_LCTL, KC_RALT,                      _______, _______, _______, _______, _______, _______,
+        _______, KC_LALT, DK_PLUS, DK_ASTR, DK_BSLS, DK_TILD,                      _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
+                                                     XXXXXXX, _______,    _______, _______
+    ),
+    [RGT] = LAYOUT(
+        _______, _______, _______, _______, _______, _______,                      KC_6,    KC_7,    KC_8,    KC_9,    _______, _______,
+        _______, _______, _______, _______, _______, _______,                      KC_RALT, KC_RCTL, KC_RSFT, KC_RGUI, KC_0,    _______,
+        _______, _______, _______, _______, _______, _______,                      DK_LABK, DK_MINS, DK_LBRC, DK_RBRC, KC_LALT, _______,
+        _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
+                                                     _______, _______,    _______, XXXXXXX
+    ),
     [EXT] = LAYOUT(
-        // TODO: Don't think all these 'copy/paste' shortcuts are worth.
-        // Instead, find way to add modifier keys to both hands, so pressing these is not so awkward.
-        // Am keeping the tmux prefix key tho, for now (can be held down to combine with movement keys)
-        // NOTE: Possible idea: Replace ' and - on main layer with Return and Backspace respectively? Maaaybe...
-        // Downside: Multiple 'Backspace' presses is annoying ...
-        // Could also use spaces to the left/right of respective pinkies (and move æ up on DK_MINS place)
-        // TODO: 2: Now the edit-keys on left hand might not be needed, so consider possible replacements
-        // NOTE: Top row here is a bunch of accents, grouping them so easier to find, since they are used rarely.
-        // eg: ½¨^. TODO: Add more
-        CODEBLC, KC_GRV,  KC_RBRC, DK_CIRC, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_APP,  TO(GAM),
-        KC_RALT, KC_MEH,  KC_LGUI, KC_LSFT, KC_LCTL, C(KC_B),                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, _______,
-        _______, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_ENT,  KC_BSPC, KC_DEL,  KC_TAB,  XXXXXXX, _______,
-        _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, MO(SYS),                      MO(SYS), XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
-                                                     XXXXXXX, _______,    _______, QK_AREP
-    ),
-    [SYM] = LAYOUT(
-        XXXXXXX, DK_EXLM, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      DK_PLUS, DK_LABK, DK_EQL,  DK_RABK, DK_ASTR, XXXXXXX,
-        XXXXXXX, DK_PIPE, DK_LPRN, DK_LCBR, DK_LBRC, DK_AMPR,                      DK_QUES, KC_RCTL, KC_RSFT, KC_RGUI, KC_MEH,  KC_RALT,
-        XXXXXXX, DK_GRV,  DK_RPRN, DK_RCBR, DK_RBRC, XXXXXXX,                      DK_CIRC, DK_SLSH, DK_BSLS, DK_TILD, KC_LALT, XXXXXXX,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                                     _______,  _______,   _______, XXXXXXX
-    ),
-    // NOTE: No way to access this layer, for now
-    [MAC] = LAYOUT(
-        XXXXXXX, CODEBLC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, LARROW,  XXXXXXX, RARROW,  XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, LDARROW, XXXXXXX, RDARROW, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      RETSEMI, LPIPE,   XXXXXXX, RPIPE,   XXXXXXX, _______,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                                     XXXXXXX, _______,    _______, XXXXXXX
+        _______, CODEBLC, XXXXXXX, XXXXXXX, KC_FIND, XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, TO(GAM),
+        _______, XXXXXXX, KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_APP,  XXXXXXX,
+        MO(SYS), KC_LALT, KC_COPY, XXXXXXX, KC_PSTE, KC_CUT,                       KC_ENT,  KC_BSPC, S(KC_ENT),KC_TAB, KC_DEL,  MO(SYS),
+        _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
+                                                     _______, XXXXXXX,    _______, QK_AREP
     ),
     [NUM] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    S(DK_MINS), TO(GAM),
-        KC_RALT, KC_MEH,  KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      DK_DOT,  KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    S(DK_MINS),XXXXXXX,
+        XXXXXXX, XXXXXXX, KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      DK_DOT,  KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
         XXXXXXX, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      DK_COMM, KC_1,    KC_2,    KC_3,    KC_SPC,  XXXXXXX,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                      _______, _______,    _______, _______
     ),
     [SYS] = LAYOUT(
         RM_SPDD, KC_MUTE, KC_VOLD, KC_VOLU, KC_BRID, KC_BRIU,                      XXXXXXX, KC_F7,   KC_F8,   KC_F9,   KC_F12,  XXXXXXX,
-        XXXXXXX, XXXXXXX, OS_LGUI, OS_LSFT, OS_LCTL, XXXXXXX,                      XXXXXXX, KC_F4,   KC_F5,   KC_F6,   KC_F11,  XXXXXXX,
-        _______, OS_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      _______, KC_F1,   KC_F2,   KC_F3,   KC_F10,  XXXXXXX,
+        XXXXXXX, XXXXXXX, KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      XXXXXXX, KC_F4,   KC_F5,   KC_F6,   KC_F11,  XXXXXXX,
+        _______, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F10,  XXXXXXX,
         _______, RM_SPDU, RM_PREV, RM_NEXT, RM_VALD, RM_VALU,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                      XXXXXXX, _______,    _______, XXXXXXX
     ),
@@ -100,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    DK_ARNG,
         KC_KP_1, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,    DK_AE,   DK_OSTR,
         KC_KP_0, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    DK_DOT,  DK_COMM, DK_MINS, XXXXXXX,
-                                                     KC_LSFT, MO(GNV),    TO(DEF), XXXXXXX
+                                                     KC_LSFT, MO(GNV),    TO(DEF), KC_SPC
     ),
     [GNV] = LAYOUT(
         XXXXXXX, KC_KP_3, KC_KP_4, KC_UP,   KC_KP_5, KC_KP_6,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -123,32 +114,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case LARROW:
             if (record->event.pressed) {
-                SEND_STRING(" <- ");
+                SEND_STRING("<-");
             }
             break;
         case LDARROW:
             if (record->event.pressed) {
-                SEND_STRING(" <= ");
+                SEND_STRING("<=");
             }
             break;
         case LPIPE:
             if (record->event.pressed) {
-                SEND_STRING(" <| ");
+                SEND_STRING("<|");
             }
             break;
         case RARROW:
             if (record->event.pressed) {
-                SEND_STRING(" -> ");
+                SEND_STRING("->");
             }
             break;
         case RDARROW:
             if (record->event.pressed) {
-                SEND_STRING(" => ");
+                SEND_STRING("=>");
             }
             break;
         case RPIPE:
             if (record->event.pressed) {
-                SEND_STRING(" |> ");
+                SEND_STRING("|>");
             }
             break;
         case RETSEMI:
@@ -228,10 +219,35 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 // S-' = "
-const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, DK_QUOT, DK_DQUO);
+const key_override_t shift_single_quote_override = ko_make_basic(MOD_MASK_SHIFT, DK_QUOT, DK_DQUO);
+#define MOD_MASK_SRALT (MOD_MASK_SHIFT | MOD_BIT_RALT)
+// S-[ = {
+const key_override_t shift_left_bracket_override = ko_make_basic(MOD_MASK_SHIFT, DK_LBRC, DK_LCBR);
+// S-] = }
+const key_override_t shift_right_bracket_override = ko_make_basic(MOD_MASK_SHIFT, DK_RBRC, DK_RCBR);
+// S-* = `
+const key_override_t shift_asterisk_override = ko_make_basic(MOD_MASK_SHIFT, DK_ASTR, DK_GRV);
+// S-\ from ¬ to |
+const key_override_t shift_backslash_override = ko_make_basic(MOD_MASK_SHIFT, DK_BSLS, DK_PIPE);
+// S-2 = @ instead of "
+const key_override_t shift_2_override = ko_make_basic(MOD_MASK_SHIFT, KC_2, DK_AT);
+// S-2 = $ instead of ¤
+const key_override_t shift_4_override = ko_make_basic(MOD_MASK_SHIFT, KC_4, DK_DLR);
+// S-~ = ^
+const key_override_t shift_tilde_override = ko_make_basic(MOD_MASK_SHIFT, DK_TILD, DK_CIRC);
 
 // This globally defines all key overrides to be used
-const key_override_t *key_overrides[] = {&delete_key_override};
+const key_override_t *key_overrides[] = {
+    &shift_single_quote_override,
+    &shift_left_bracket_override,
+    &shift_right_bracket_override,
+    &shift_asterisk_override,
+
+    &shift_backslash_override,
+    &shift_2_override,
+    &shift_4_override,
+    &shift_tilde_override,
+};
 
 const uint16_t PROGMEM jk_esc[] = {KC_J, KC_K, COMBO_END};
 
@@ -241,12 +257,12 @@ combo_t key_combos[] = {
 
 // Use EXT-layer as a 'clear mods' button
 layer_state_t layer_state_set_user(layer_state_t state) {
-    if (layer_state_cmp(state, EXT)) {
-        clear_oneshot_mods();
-    }
+    // if (layer_state_cmp(state, EXT)) {
+    //     clear_oneshot_mods();
+    // }
     if (is_layer_locked(NUM)) return state;
     // Less forced delay using this option, compared to setting 'TRI_LAYER_ENABLE'
-    return update_tri_layer_state(state, EXT, SYM, NUM);
+    return update_tri_layer_state(state, EXT, RGT, NUM);
 }
 
 // Runs after all other is done. See zsa/voyager/readme.md for transport-function documentation
