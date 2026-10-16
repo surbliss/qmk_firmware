@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // DK_SLSH, dk-eql
     [RGT] = LAYOUT(
-        _______, _______, _______, _______, _______, _______,                      DK_AMPR, DK_LPRN, DK_RPRN, DK_LBRC, DK_RBRC, _______,
+        _______, _______, _______, _______, _______, _______,                      DK_AMPR, DK_LBRC, DK_LPRN, DK_RPRN, DK_RBRC, _______,
         _______, _______, _______, _______, _______, _______,                      KC_RALT, KC_RCTL, KC_RSFT, KC_RGUI, DK_GRV,  _______,
         _______, _______, _______, _______, _______, _______,                      DK_LABK, DK_RABK, DK_EQL,  DK_MINS, KC_LALT, _______,
         _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
