@@ -105,8 +105,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 // clang-format on
 
+static bool ext_held_into_gam = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        // Following three cases are so when holding MO(EXT), pressing TO(GAM)-key twice does not exit to the DEF layer.
+        // Possible more advanced use-case would be to activate shift as long as MO(EXT) is help when going to TO(GAM), but
+        case TO(GAM):
+            // Assumes TO(GAM) is only on EXT, reached by holding MO(EXT)
+            if (record->event.pressed) ext_held_into_gam = true;
+            break; // QMK then performs the normal TO(GAM)
+        case MO(EXT):
+            if (!record->event.pressed) ext_held_into_gam = false;
+            break; // let the normal layer handling continue
+        case TO(DEF):
+            // Also assumes that when default layer GAM, there are no extra layers that expose TO(DEF)
+            if (record->event.pressed && (ext_held_into_gam || (get_mods() & MOD_MASK_SHIFT)) && layer_state_is(GAM)) return false;
+            break;
+
+        // Custom macros
         case CODEBLC:
             if (record->event.pressed) {
                 // ``` + shift-enter
@@ -220,6 +237,9 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_1 ... KC_0:
         case KC_BSPC:
         case KC_DEL:
+        // Add only the left versions of parenses, maybe a good idea? Also, only ( and [, not {
+        case DK_LPRN:
+        case DK_LBRC:
             return true;
         default:
             return false; // Deactivate Caps Word.
@@ -243,7 +263,7 @@ const key_override_t shift_2_override = ko_make_basic(MOD_MASK_SHIFT, KC_2, DK_A
 const key_override_t shift_4_override = ko_make_basic(MOD_MASK_SHIFT, KC_4, DK_DLR);
 // S-~ = ^
 const key_override_t shift_tilde_override = ko_make_basic(MOD_MASK_SHIFT, DK_TILD, DK_CIRC);
-const key_override_t to_def_override      = ko_make_basic(MOD_MASK_SHIFT, TO(DEF), XXXXXXX);
+// const key_override_t to_def_override      = ko_make_with_layers(MOD_MASK_SHIFT, TO(DEF), XXXXXXX, 1 << GAM);
 
 // This globally defines all key overrides to be used
 const key_override_t *key_overrides[] = {
@@ -256,7 +276,7 @@ const key_override_t *key_overrides[] = {
     &shift_2_override,
     &shift_4_override,
     &shift_tilde_override,
-    &to_def_override,
+    // &to_def_override,
 };
 
 const uint16_t PROGMEM jk_esc[] = {KC_J, KC_K, COMBO_END};
