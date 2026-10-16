@@ -2,3 +2,5 @@
 #define TAPPING_TERM 300
 // Makes one-shot modifier hybrids more responsive
 #define PERMISSIVE_HOLD
+
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
