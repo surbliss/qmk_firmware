@@ -39,35 +39,37 @@ enum custom_keycodes {
     RETSEMI,
     RET_SFT, // Return + Shift if holding
     DBL_CLN,
+    SND_MSG, // Game layer, press enter and switch to base layer
 };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
         _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, DK_ARNG,
-        _______, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
+        CW_TOGG, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
         DK_BSLS, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    DK_AE,
-        QK_LLCK, DM_PLY1, DM_PLY2, _______, CW_TOGG, CW_TOGG,                      _______, LDARROW, LARROW,  RARROW,  RDARROW, _______,
+        _______, DM_PLY1, DM_PLY2, _______, _______, _______,                      _______, _______, _______, _______, _______, QK_LLCK,
                                                      MO(EXT), MO(LFT),    MO(RGT), KC_SPC
     ),
     [LFT] = LAYOUT(
-        _______, _______, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      _______, _______, _______, _______, _______, _______,
-        _______, DK_EXLM, KC_LGUI, KC_LSFT, KC_LCTL, KC_RALT,                      _______, _______, _______, _______, _______, _______,
-        _______, KC_LALT, DK_PLUS, DK_ASTR, DK_MINS, DK_TILD,                      _______, _______, _______, _______, _______, _______,
+        _______, DK_EXLM, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      _______, _______, _______, _______, _______, _______,
+        _______, DK_QUES, KC_LGUI, KC_LSFT, KC_LCTL, KC_RALT,                      _______, _______, _______, _______, _______, _______,
+        _______, KC_LALT, DK_PLUS, DK_ASTR, DK_SLSH, DK_TILD,                      _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
                                                      XXXXXXX, _______,    _______, _______
     ),
+    // DK_SLSH, dk-eql
     [RGT] = LAYOUT(
-        _______, _______, _______, _______, _______, _______,                      DK_AMPR, DK_SLSH, DK_LPRN, DK_RPRN, _______, _______,
-        _______, _______, _______, _______, _______, _______,                      KC_RALT, KC_RCTL, KC_RSFT, KC_RGUI, DK_EQL,  _______,
-        _______, _______, _______, _______, _______, _______,                      DK_LABK, DK_RABK, DK_LBRC, DK_RBRC, KC_LALT, _______,
+        _______, _______, _______, _______, _______, _______,                      DK_AMPR, DK_LPRN, DK_RPRN, DK_LBRC, DK_RBRC, _______,
+        _______, _______, _______, _______, _______, _______,                      KC_RALT, KC_RCTL, KC_RSFT, KC_RGUI, DK_GRV,  _______,
+        _______, _______, _______, _______, _______, _______,                      DK_LABK, DK_RABK, DK_EQL,  DK_MINS, KC_LALT, _______,
         _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
                                                      _______, _______,    _______, XXXXXXX
     ),
     [EXT] = LAYOUT(
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, TO(GAM),
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSTE,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, TO(GAM),
         _______, CODEBLC, KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_APP,  XXXXXXX,
-        MO(SYS), KC_LALT, KC_COPY, XXXXXXX, KC_PSTE, KC_CUT,                       KC_ENT,  KC_BSPC, S(KC_ENT),KC_TAB, KC_DEL,  MO(SYS),
+        MO(SYS), KC_LALT, KC_COPY, XXXXXXX, XXXXXXX, KC_CUT,                       KC_ENT,  KC_BSPC, S(KC_ENT),KC_TAB, KC_DEL,  MO(SYS),
         _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
                                                      _______, XXXXXXX,    _______, QK_AREP
     ),
@@ -85,20 +87,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, RM_SPDU, RM_PREV, RM_NEXT, RM_VALD, RM_VALU,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                      XXXXXXX, _______,    _______, XXXXXXX
     ),
-    // Gaming layer, only active if right keyboard is disconnected
+    // Gaming layer, automatically active if right keyboard is disconnected
     [GAM] = LAYOUT(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    TO(DEF),
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    DK_ARNG,
         KC_KP_1, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,    DK_AE,   DK_OSTR,
         KC_KP_0, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    DK_DOT,  DK_COMM, DK_MINS, XXXXXXX,
-                                                     KC_LSFT, MO(GNV),    TO(DEF), KC_SPC
+                                                     KC_LSFT, MO(GNV),    SND_MSG, KC_SPC
     ),
     [GNV] = LAYOUT(
         XXXXXXX, KC_KP_3, KC_KP_4, KC_UP,   KC_KP_5, KC_KP_6,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         KC_KP_8, KC_KP_2, KC_LEFT, KC_DOWN, KC_RGHT, KC_KP_7,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         KC_KP_9, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-                                                     XXXXXXX, _______,    TO(DEF), XXXXXXX
+                                                     XXXXXXX, _______,    XXXXXXX, XXXXXXX
     ),
 };
 // clang-format on
@@ -158,6 +160,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 tap_code(KC_ENTER);
             } else {
                 unregister_mods(MOD_BIT(KC_LSFT));
+            }
+            return false;
+        case SND_MSG:
+            if (record->event.pressed) {
+                tap_code(KC_ENTER);
+                layer_move(DEF);
             }
             return false;
     }
@@ -235,6 +243,7 @@ const key_override_t shift_2_override = ko_make_basic(MOD_MASK_SHIFT, KC_2, DK_A
 const key_override_t shift_4_override = ko_make_basic(MOD_MASK_SHIFT, KC_4, DK_DLR);
 // S-~ = ^
 const key_override_t shift_tilde_override = ko_make_basic(MOD_MASK_SHIFT, DK_TILD, DK_CIRC);
+const key_override_t to_def_override      = ko_make_basic(MOD_MASK_SHIFT, TO(DEF), XXXXXXX);
 
 // This globally defines all key overrides to be used
 const key_override_t *key_overrides[] = {
@@ -247,6 +256,7 @@ const key_override_t *key_overrides[] = {
     &shift_2_override,
     &shift_4_override,
     &shift_tilde_override,
+    &to_def_override,
 };
 
 const uint16_t PROGMEM jk_esc[] = {KC_J, KC_K, COMBO_END};
