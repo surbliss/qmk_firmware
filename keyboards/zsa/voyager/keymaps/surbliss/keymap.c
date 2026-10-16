@@ -44,35 +44,35 @@ enum custom_keycodes {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
-        _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_ARNG, _______,
+        _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, DK_ARNG,
         _______, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
         DK_BSLS, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    DK_AE,
-        QK_LLCK, DM_PLY1, DM_PLY2, _______, _______, CW_TOGG,                      _______, LDARROW, LARROW,  RARROW,  RDARROW, _______,
+        QK_LLCK, DM_PLY1, DM_PLY2, _______, CW_TOGG, CW_TOGG,                      _______, LDARROW, LARROW,  RARROW,  RDARROW, _______,
                                                      MO(EXT), MO(LFT),    MO(RGT), KC_SPC
     ),
     [LFT] = LAYOUT(
-        _______, _______,  KC_2,   KC_3,    KC_4,    KC_5,                         _______, _______, _______, _______, _______, _______,
-        _______, KC_1,    KC_LGUI, KC_LSFT, KC_LCTL, KC_RALT,                      _______, _______, _______, _______, _______, _______,
-        _______, KC_LALT, DK_PLUS, DK_ASTR, DK_BSLS, DK_TILD,                      _______, _______, _______, _______, _______, _______,
+        _______, _______, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      _______, _______, _______, _______, _______, _______,
+        _______, DK_EXLM, KC_LGUI, KC_LSFT, KC_LCTL, KC_RALT,                      _______, _______, _______, _______, _______, _______,
+        _______, KC_LALT, DK_PLUS, DK_ASTR, DK_MINS, DK_TILD,                      _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
                                                      XXXXXXX, _______,    _______, _______
     ),
     [RGT] = LAYOUT(
-        _______, _______, _______, _______, _______, _______,                      KC_6,    KC_7,    KC_8,    KC_9,    _______, _______,
-        _______, _______, _______, _______, _______, _______,                      KC_RALT, KC_RCTL, KC_RSFT, KC_RGUI, KC_0,    _______,
-        _______, _______, _______, _______, _______, _______,                      DK_LABK, DK_MINS, DK_LBRC, DK_RBRC, KC_LALT, _______,
+        _______, _______, _______, _______, _______, _______,                      DK_AMPR, DK_SLSH, DK_LPRN, DK_RPRN, _______, _______,
+        _______, _______, _______, _______, _______, _______,                      KC_RALT, KC_RCTL, KC_RSFT, KC_RGUI, DK_EQL,  _______,
+        _______, _______, _______, _______, _______, _______,                      DK_LABK, DK_RABK, DK_LBRC, DK_RBRC, KC_LALT, _______,
         _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
                                                      _______, _______,    _______, XXXXXXX
     ),
     [EXT] = LAYOUT(
-        _______, CODEBLC, XXXXXXX, XXXXXXX, KC_FIND, XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, TO(GAM),
-        _______, XXXXXXX, KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_APP,  XXXXXXX,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, TO(GAM),
+        _______, CODEBLC, KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_APP,  XXXXXXX,
         MO(SYS), KC_LALT, KC_COPY, XXXXXXX, KC_PSTE, KC_CUT,                       KC_ENT,  KC_BSPC, S(KC_ENT),KC_TAB, KC_DEL,  MO(SYS),
         _______, DM_REC1, DM_REC2, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_RSTP, XXXXXXX,
                                                      _______, XXXXXXX,    _______, QK_AREP
     ),
     [NUM] = LAYOUT(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_7,    KC_8,    KC_9,    S(DK_MINS),XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      DK_MINS, KC_7,    KC_8,    KC_9,    S(DK_MINS),XXXXXXX,
         XXXXXXX, XXXXXXX, KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      DK_DOT,  KC_4,    KC_5,    KC_6,    KC_0,    XXXXXXX,
         XXXXXXX, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      DK_COMM, KC_1,    KC_2,    KC_3,    KC_SPC,  XXXXXXX,
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
