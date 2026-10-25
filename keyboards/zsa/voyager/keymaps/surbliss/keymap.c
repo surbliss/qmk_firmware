@@ -45,24 +45,23 @@ enum custom_keycodes {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
-        _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_MINS, DK_ARNG,
-        CW_TOGG, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
-        DK_BSLS, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    DK_AE,
-        _______, DM_PLY1, DM_PLY2, _______, _______, _______,                      _______, _______, _______, _______, _______, QK_LLCK,
+        _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_ARNG, _______,
+        DK_EQL,  KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
+        DK_UNDS, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    DK_AE,
+        _______, KC_LALT, KC_LGUI, KC_LSFT, KC_LCTL, KC_RALT,                      KC_RALT, KC_RCTL, KC_RSFT, KC_RGUI, KC_LALT, _______,
                                                      MO(EXT), MO(LFT),    MO(RGT), KC_SPC
     ),
     [LFT] = LAYOUT(
-        _______, DK_EXLM, DK_AT,   DK_HASH, DK_DLR,  DK_PERC,                      _______, _______, _______, _______, _______, _______,
-        _______, DK_QUES, KC_LGUI, KC_LSFT, KC_LCTL, KC_RALT,                      _______, _______, _______, _______, _______, _______,
-        _______, KC_LALT, DK_PLUS, DK_ASTR, DK_SLSH, DK_TILD,                      _______, _______, _______, _______, _______, _______,
+        _______, DK_GRV,  DK_AT,   DK_BSLS, DK_SLSH, DK_AMPR,                      _______, _______, _______, _______, _______, _______,
+        _______, DK_LABK, DK_EQL,  DK_MINS, DK_RABK, DK_CIRC,                      _______, _______, _______, _______, _______, _______,
+        _______, DK_DQUO, DK_PIPE, DK_ASTR, DK_PLUS, XXXXXXX,                      _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
                                                      XXXXXXX, _______,    _______, _______
     ),
-    // DK_SLSH, dk-eql
     [RGT] = LAYOUT(
-        _______, _______, _______, _______, _______, _______,                      DK_AMPR, DK_LBRC, DK_LPRN, DK_RPRN, DK_RBRC, _______,
-        _______, _______, _______, _______, _______, _______,                      KC_RALT, KC_RCTL, KC_RSFT, KC_RGUI, DK_GRV,  _______,
-        _______, _______, _______, _______, _______, _______,                      DK_LABK, DK_RABK, DK_EQL,  DK_MINS, KC_LALT, _______,
+        _______, _______, _______, _______, _______, _______,                      DK_TILD, DK_RBRC, DK_LBRC, DK_HASH, XXXXXXX, _______,
+        _______, _______, _______, _______, _______, _______,                      DK_EXLM, DK_RCBR, DK_LCBR, DK_DLR,  DK_QUES, XXXXXXX,
+        _______, _______, _______, _______, _______, _______,                      DK_SCLN, DK_RPRN, DK_LPRN, DK_COLN, DK_PERC, XXXXXXX,
         _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
                                                      _______, _______,    _______, XXXXXXX
     ),
