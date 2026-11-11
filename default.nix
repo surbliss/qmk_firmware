@@ -1,28 +1,21 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   packages = with pkgs; [
     qmk
-    dos2unix # Apparently needed
+    dos2unix # Aparrently needed
     # Better LSP support
     clang
     clang-tools
   ];
 
-  commands = [
-    {
-      name = "e";
-      command = "hx ./keyboards/zsa/voyager/keymaps/surbliss";
-      help = "Edit voyager configuration";
-    }
-    {
-      name = "f";
-      command = "qmk flash";
-      help = "qmk flash";
-    }
-    {
-      name = "c";
-      command = "qmk compile";
-      help = "qmk compile";
-    }
-  ];
+  # inputsFrom = with pkgs;[ ];
+
+  env = {
+    IS_NIX_SHELL = true;
+
+    CONF = "./qmk_firmware/keyboards/zsa/voyager/keymaps/surbliss";
+  };
+
+  shellHook = ''
+    echo Hello!
+  '';
 }

@@ -23,7 +23,3 @@ compile:
 # Regenerate database to fix lsp-commands
 lsp:
     qmk compile -kb zsa/voyager -km surbliss --compiledb
-
-# Fetch the git-submoules, necessary after fresh clone
-update:
-    git submodule update --init --recursive
