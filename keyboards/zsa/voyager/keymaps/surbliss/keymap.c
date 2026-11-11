@@ -36,6 +36,7 @@ enum custom_keycodes {
     RDARROW,
     LPIPE,
     RPIPE,
+    COL_EQ,
     RETSEMI,
     RET_SFT, // Return + Shift if holding
     DBL_CLN,
@@ -46,7 +47,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT(
         _______, DK_QUOT, KC_G,    KC_D,    KC_F,    KC_V,                         KC_Q,    KC_L,    KC_U,    KC_O,    DK_ARNG, _______,
-        DK_EQL,  KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
+        DK_BSLS, KC_W,    KC_S,    KC_T,    KC_H,    KC_B,                         KC_Z,    KC_N,    KC_E,    KC_A,    KC_Y,    DK_OSTR,
         DK_UNDS, KC_R,    KC_C,    KC_M,    KC_P,    KC_X,                         DK_COMM, KC_J,    KC_K,    DK_DOT,  KC_I,    DK_AE,
         _______, KC_LALT, KC_LGUI, KC_LSFT, KC_LCTL, KC_RALT,                      KC_RALT, KC_RCTL, KC_RSFT, KC_RGUI, KC_LALT, _______,
                                                      MO(EXT), MO(LFT),    MO(RGT), KC_SPC
@@ -54,14 +55,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LFT] = LAYOUT(
         _______, DK_GRV,  DK_AT,   DK_BSLS, DK_SLSH, DK_AMPR,                      _______, _______, _______, _______, _______, _______,
         _______, DK_LABK, DK_EQL,  DK_MINS, DK_RABK, DK_CIRC,                      _______, _______, _______, _______, _______, _______,
-        _______, DK_DQUO, DK_PIPE, DK_ASTR, DK_PLUS, XXXXXXX,                      _______, _______, _______, _______, _______, _______,
+        _______, DK_COLN, DK_PIPE, DK_ASTR, DK_PLUS, COL_EQ,                      _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
                                                      XXXXXXX, _______,    _______, _______
     ),
     [RGT] = LAYOUT(
-        _______, _______, _______, _______, _______, _______,                      DK_TILD, DK_RBRC, DK_LBRC, DK_HASH, XXXXXXX, _______,
-        _______, _______, _______, _______, _______, _______,                      DK_EXLM, DK_RCBR, DK_LCBR, DK_DLR,  DK_QUES, XXXXXXX,
-        _______, _______, _______, _______, _______, _______,                      DK_SCLN, DK_RPRN, DK_LPRN, DK_COLN, DK_PERC, XXXXXXX,
+        _______, _______, _______, _______, _______, _______,                      DK_TILD, DK_LCBR, DK_DLR,  DK_RCBR, XXXXXXX, _______,
+        _______, _______, _______, _______, _______, _______,                      DK_EXLM, DK_LBRC, DK_HASH, DK_RBRC, DK_QUES, XXXXXXX,
+        _______, _______, _______, _______, _______, _______,                      DK_SCLN, DK_LPRN, DK_RPRN, DK_COLN, DK_PERC, XXXXXXX,
         _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,
                                                      _______, _______,    _______, XXXXXXX
     ),
@@ -69,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PSTE,                      KC_PGUP, KC_HOME, KC_UP,   KC_END,  XXXXXXX, TO(GAM),
         _______, CODEBLC, KC_LGUI, KC_LSFT, KC_LCTL, XXXXXXX,                      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_APP,  XXXXXXX,
         MO(SYS), KC_LALT, KC_COPY, XXXXXXX, XXXXXXX, KC_CUT,                       KC_ENT,  KC_BSPC, S(KC_ENT),KC_TAB, KC_DEL,  MO(SYS),
-        _______, AS_DOWN, AS_UP,   XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AS_RPT,  AS_TOGG,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
                                                      _______, XXXXXXX,    _______, QK_AREP
     ),
     [NUM] = LAYOUT(
@@ -128,6 +129,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // ``` + shift-enter
                 // Using 'SEND_STRING("```")' adds spaces between (to compensate for normally being dead keys)
                 SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_EQL) SS_TAP(X_EQL) SS_TAP(X_EQL) SS_LSFT("\n") SS_UP(X_LSFT));
+            }
+            break;
+        case COL_EQ:
+            if (record->event.pressed) {
+                SEND_STRING(":=");
             }
             break;
         case LARROW:
